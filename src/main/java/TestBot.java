@@ -11,6 +11,10 @@ public class TestBot extends TelegramLongPollingBot {
     private static final String BOT_TOKEN = "722649547:AAFobeolFSuWDdTU3PBiRqEDdJVkF_Wnc40";
 
     public static void main(String[] args) {
+//        System.getProperties().put( "proxySet", "true" );
+//        System.getProperties().put( "socksProxyHost", "127.0.0.1" );
+//        System.getProperties().put( "socksProxyPort", "9150" );
+
         ApiContextInitializer.init();
         TelegramBotsApi botapi = new TelegramBotsApi();
         try {
