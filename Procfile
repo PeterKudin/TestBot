@@ -1,1 +1,1 @@
-worker: sh target/bin/misha-test-bot
+bot: java -jar target/test-bot-1.0-SNAPSHOT.jar
