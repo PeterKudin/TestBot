@@ -1,1 +1,1 @@
-bot: java -jar target/test-bot-1.0-SNAPSHOT.jar
+worker: sh target/bin/workerBot
