@@ -1,25 +1,12 @@
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.api.objects.Update;
-import org.telegram.telegrambots.ApiContextInitializer;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
-import org.telegram.telegrambots.TelegramBotsApi;
 import org.telegram.telegrambots.api.objects.Message;
 import org.telegram.telegrambots.api.methods.send.SendMessage;
 
 public class TestBot extends TelegramLongPollingBot {
     private static final String BOT_NAME = "Misha2010TestBot";
     private static final String BOT_TOKEN = "722649547:AAFobeolFSuWDdTU3PBiRqEDdJVkF_Wnc40";
-
-    public static void main(String[] args) {
-
-        ApiContextInitializer.init();
-        TelegramBotsApi botapi = new TelegramBotsApi();
-        try {
-            botapi.registerBot(new TestBot());
-        } catch (TelegramApiException e) {
-            e.printStackTrace();
-        }
-    }
 
     @Override
     public void onUpdateReceived(Update update) {

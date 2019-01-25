@@ -30,7 +30,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>TestBot</mainClass>
+                            <mainClass>Main</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
@@ -47,7 +47,7 @@
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>lib/</classpathPrefix>
-                            <mainClass>TestBot</mainClass>
+                            <mainClass>Main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
