@@ -6,9 +6,14 @@ import org.telegram.telegrambots.exceptions.TelegramApiException;
 import org.telegram.telegrambots.api.objects.Message;
 import org.telegram.telegrambots.api.methods.send.SendMessage;
 
+public class TestBot {
+    public String BOT_NAME = "Misha2010TestBot";
+}
+/*
 public class TestBot extends TelegramLongPollingBot {
     private static final String BOT_NAME = "Misha2010TestBot";
     private static final String BOT_TOKEN = "722649547:AAFobeolFSuWDdTU3PBiRqEDdJVkF_Wnc40";
+
 
     @Override
     public void onUpdateReceived(Update update) {
@@ -45,3 +50,4 @@ public class TestBot extends TelegramLongPollingBot {
     }
 
 }
+*/
