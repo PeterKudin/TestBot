@@ -8,6 +8,10 @@ import org.telegram.telegrambots.api.methods.send.SendMessage;
 
 public class TestBot {
     public String BOT_NAME = "Misha2010TestBot";
+
+    public void testprint(String str) {
+        System.out.println(str);
+    }
 }
 /*
 public class TestBot extends TelegramLongPollingBot {
