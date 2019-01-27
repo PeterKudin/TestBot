@@ -4,7 +4,7 @@ import org.telegram.telegrambots.exceptions.TelegramApiException;
 import testbot.TestBot;
 public class Main {
     public static void main(String[] args) {
-/*        // Initialize Api Context
+       // Initialize Api Context
         ApiContextInitializer.init();
 
         // Instantiate Telegram Bots API
@@ -15,9 +15,6 @@ public class Main {
             botsApi.registerBot(new TestBot());
         } catch (TelegramApiException e) {
             e.printStackTrace();
-        }*/
-        TestBot bot = new TestBot();
-        System.out.println("27.01.2019 test0");
-        bot.testprint("bot.testprint 27.01.2019 test1");
+        }
     }
 }
