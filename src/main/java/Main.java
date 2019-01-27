@@ -17,6 +17,7 @@ public class Main {
             e.printStackTrace();
         }*/
         TestBot bot = new TestBot();
-        bot.testprint("27.01.2019 test0");
+        System.out.println("27.01.2019 test0");
+        bot.testprint("bot.testprint 27.01.2019 test1");
     }
 }
