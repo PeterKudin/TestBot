@@ -16,7 +16,7 @@ public class Main {
         } catch (TelegramApiException e) {
             e.printStackTrace();
         }*/
-        TestBot bot = new TestBot();
-        System.out.println(bot.BOT_NAME);
+//        TestBot bot = new TestBot();
+        System.out.println("bot.BOT_NAME");
     }
 }
