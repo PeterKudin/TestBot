@@ -1,18 +1,10 @@
 package testbot;
 
+import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
-import org.telegram.telegrambots.api.objects.Update;
-import org.telegram.telegrambots.exceptions.TelegramApiException;
-import org.telegram.telegrambots.api.objects.Message;
-import org.telegram.telegrambots.api.methods.send.SendMessage;
-
-/*public class TestBot {
-    public String BOT_NAME = "Misha2010TestBot";
-
-    public void testprint(String str) {
-        System.out.println(str);
-    }
-}*/
+import org.telegram.telegrambots.meta.api.objects.Update;
+import org.telegram.telegrambots.meta.api.objects.Message;
+import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 
 public class TestBot extends TelegramLongPollingBot {
     private static final String BOT_NAME = "Misha2010TestBot";
@@ -52,5 +44,4 @@ public class TestBot extends TelegramLongPollingBot {
             e.printStackTrace();
         }
     }
-
 }
