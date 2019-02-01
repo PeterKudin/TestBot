@@ -8,17 +8,14 @@ public class Main {
 
     public static void main(String[] args) {
        // Initialize Api Context
-        System.out.println("before ApiContextInitializer.init");
         ApiContextInitializer.init();
-        System.out.println("after ApiContextInitializer.init");
 
         // Instantiate Telegram Bots API
-        System.out.println("before new TelegramBotsApi()");
         TelegramBotsApi botsApi = new TelegramBotsApi();
-        System.out.println("after new TelegramBotsApi()");
 
         // Register our bot
         try {
+            System.out.println("before botsApi.registerBot");
             botsApi.registerBot(new TestBot());
         } catch (TelegramApiException e) {
             e.printStackTrace();

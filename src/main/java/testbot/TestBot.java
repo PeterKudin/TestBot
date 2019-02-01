@@ -17,6 +17,8 @@ public class TestBot extends TelegramLongPollingBot {
         if (message != null && message.hasText()) {
             if (message.getText().equals("/help"))
                 sendMsg(message, "Привет, я робот");
+            else if (message.getText().equals("Привет")) {
+               sendMsg(message, "Привет");}
             else
                 sendMsg(message, "Я не знаю что ответить на это");
         }
