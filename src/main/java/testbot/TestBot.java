@@ -5,6 +5,7 @@ import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import java.util.Date;
 
 public class TestBot extends TelegramLongPollingBot {
     private static final String BOT_NAME = "Misha2010TestBot";
@@ -14,13 +15,24 @@ public class TestBot extends TelegramLongPollingBot {
     @Override
     public void onUpdateReceived(Update update) {
         Message message = update.getMessage();
-        if (message != null && message.hasText()) {
-            switch (message.getText().toLowerCase()) {
-                case "привет": sendMsg(message, "Привет"); break;
-                case "пока": sendMsg(message, "Пока"); break;
-                case "как дела": sendMsg(message, "Нормально"); break;
-                default: sendMsg(message, "Я не знаю что ответить на это"); break;
+        if (message != null && message.hasText()) switch (message.getText().toLowerCase()) {
+            case "привет":
+                sendMsg(message, "Привет");
+                break;
+            case "пока":
+                sendMsg(message, "Пока");
+                break;
+            case "как дела":
+                sendMsg(message, "Нормально");
+                break;
+            case "скольво времени": {
+                Date date = new Date();
+                sendMsg(message, "Сейчас " + date.toString());
+                break;
             }
+            default:
+                sendMsg(message, "Я не знаю что ответить на это");
+                break;
         }
     }
 
