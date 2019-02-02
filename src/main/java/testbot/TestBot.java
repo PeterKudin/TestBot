@@ -6,6 +6,9 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.text.DateFormat;
+import java.util.TimeZone;
 
 public class TestBot extends TelegramLongPollingBot {
     private static final String BOT_NAME = "Misha2010TestBot";
@@ -31,7 +34,9 @@ public class TestBot extends TelegramLongPollingBot {
             case "время":
             case "сколько времени": {
                 Date date = new Date();
-                sendMsg(message, "Сейчас " + date.toString());
+                DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                df.setTimeZone(TimeZone.getTimeZone("Europe/Moscow"));
+                sendMsg(message, "Сейчас " + df.format(date));
                 break;
             }
             default:
