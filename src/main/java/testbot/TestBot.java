@@ -34,7 +34,7 @@ public class TestBot extends TelegramLongPollingBot {
             case "время":
             case "сколько времени": {
                 Date date = new Date();
-                DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                DateFormat df = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
                 df.setTimeZone(TimeZone.getTimeZone("Europe/Moscow"));
                 sendMsg(message, "Сейчас " + df.format(date));
                 break;
