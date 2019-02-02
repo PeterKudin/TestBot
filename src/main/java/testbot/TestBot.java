@@ -25,7 +25,7 @@ public class TestBot extends TelegramLongPollingBot {
             case "как дела":
                 sendMsg(message, "Нормально");
                 break;
-            case "скольво времени": {
+            case "сколько времени": {
                 Date date = new Date();
                 sendMsg(message, "Сейчас " + date.toString());
                 break;
