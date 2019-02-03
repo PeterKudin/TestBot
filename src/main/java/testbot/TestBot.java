@@ -32,10 +32,10 @@ public class TestBot extends TelegramLongPollingBot {
                 sendMsgWithName(message, "До свидания");
                 break;
             case "как дела":
-                sendMsg(message, "Нормально");
+                sendMsg(message, "Отлично");
                 break;
             case "время":
-            case "сколько времени": {
+            case "который час": {
                 Date date = new Date();
                 DateFormat df = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
                 df.setTimeZone(TimeZone.getTimeZone("Europe/Moscow"));
