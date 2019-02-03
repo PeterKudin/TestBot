@@ -26,7 +26,7 @@ public class TestBot extends TelegramLongPollingBot {
                 sendMsg(message, "Здравствуй, " + message.getChat().getFirstName() + "!");
                 break;
             case "пока":
-                sendMsg(message, "Пока");
+                sendMsgWithName(message, "Пока");
                 break;
             case "до свидания":
                 sendMsgWithName(message, "До свидания");
