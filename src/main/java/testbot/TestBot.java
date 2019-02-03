@@ -20,7 +20,7 @@ public class TestBot extends TelegramLongPollingBot {
         Message message = update.getMessage();
         if (message != null && message.hasText()) switch (message.getText().toLowerCase()) {
             case "привет":
-                sendMsg(message, "Привет");
+                sendMsgWithName(message, "Привет");
                 break;
             case "здравствуй":
                 sendMsg(message, "Здравствуй, " + message.getChat().getFirstName() + "!");
@@ -29,7 +29,7 @@ public class TestBot extends TelegramLongPollingBot {
                 sendMsg(message, "Пока");
                 break;
             case "до свидания":
-                sendMsg(message, "До свидания, "+message.getChat().getFirstName());
+                sendMsgWithName(message, "До свидания");
                 break;
             case "как дела":
                 sendMsg(message, "Нормально");
@@ -69,5 +69,9 @@ public class TestBot extends TelegramLongPollingBot {
         } catch (TelegramApiException e) {
             e.printStackTrace();
         }
+    }
+
+    private void sendMsgWithName(Message message, String text) {
+        sendMsg(message, text + ", "+ message.getChat().getFirstName() + "!");
     }
 }
