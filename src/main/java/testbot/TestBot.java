@@ -1,5 +1,6 @@
 package testbot;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.objects.Update;
@@ -8,13 +9,10 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardButton;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
-import java.util.List;
-import java.util.Arrays;
-import java.util.ArrayList;
-import java.util.Date;
+
+import java.util.*;
 import java.text.SimpleDateFormat;
 import java.text.DateFormat;
-import java.util.TimeZone;
 
 public class TestBot extends TelegramLongPollingBot {
     private static final String BOT_NAME = "Misha2010TestBot";
@@ -26,33 +24,34 @@ public class TestBot extends TelegramLongPollingBot {
         Message message = update.getMessage();
         if (message != null && message.hasText()) switch (message.getText().toLowerCase()) {
             case "привет":
-                sendMsgWithName(message, "Привет");
+                sendMsg(message, "Привет", true);
                 break;
             case "здравствуй":
-                sendMsg(message, "Здравствуй, " + message.getChat().getFirstName() + "!");
+                sendMsg(message, "Здравствуй", true);
                 break;
             case "пока":
-                sendMsgWithName(message, "Пока");
+                sendMsg(message, "Пока", true);
                 break;
             case "до свидания":
-                sendMsgWithName(message, "До свидания");
+                sendMsg(message, "До свидания", true);
                 break;
             case "как дела":
-                sendMsg(message, "Отлично");
+                sendMsg(message, "Отлично", false, Arrays.asList("Сколько тебе лет", "который час"));
                 break;
             case "сколько тебе лет":
-                sendMsg(message, "Роботам такие вопросы не задают.");
+                sendMsg(message, "Роботам такие вопросы не задают.", false,
+                        Arrays.asList("Привет", "Пока"));
                 break;
             case "время":
             case "который час": {
                 Date date = new Date();
                 DateFormat df = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
                 df.setTimeZone(TimeZone.getTimeZone("Europe/Moscow"));
-                sendMsg(message, "Сейчас " + df.format(date));
+                sendMsg(message, "Сейчас " + df.format(date), false);
                 break;
             }
             default:
-                sendMsg(message, "Я не знаю что ответить на это");
+                sendMsg(message, "Я не знаю что ответить на это", false);
                 break;
         }
     }
@@ -67,15 +66,15 @@ public class TestBot extends TelegramLongPollingBot {
         return BOT_TOKEN;
     }
 
-    private void sendMsg(Message message, String text) {
+    private void sendMsg(Message message, String text, Boolean needname, List<String> FirstRowCaptions, List<String> SecondRowCaptions) {
         SendMessage sendMessage = new SendMessage();
         sendMessage.enableMarkdown(true);
         sendMessage.setChatId(message.getChatId().toString());
 //        sendMessage.setReplyToMessageId(message.getMessageId());
+        if (needname) text = text + ", "+ message.getChat().getFirstName() + "!";
         sendMessage.setText(text);
 
-        AddButtons(sendMessage, Arrays.asList("Привет", "Пока", "Как дела"),
-                Arrays.asList("Привет 2", "Пока 2", "Как дела 2"));
+        AddButtons(sendMessage, FirstRowCaptions, SecondRowCaptions);
 
         try {
             execute(sendMessage);
@@ -84,8 +83,12 @@ public class TestBot extends TelegramLongPollingBot {
         }
     }
 
-    private void sendMsgWithName(Message message, String text) {
-        sendMsg(message, text + ", "+ message.getChat().getFirstName() + "!");
+    private void sendMsg(Message message, String text, Boolean needname, List<String> FirstRowCaptions)  {
+        sendMsg(message, text, needname, FirstRowCaptions, Collections.emptyList());
+    }
+
+    private void sendMsg(Message message, String text, Boolean needname)  {
+        sendMsg(message, text, needname, Collections.emptyList(), Collections.emptyList());
     }
 
     private void AddButtons(SendMessage sendMessage, List<String> FirstRowCaptions, List<String> SecondRowCaptions ) {
