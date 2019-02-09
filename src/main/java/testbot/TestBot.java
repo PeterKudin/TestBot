@@ -38,8 +38,8 @@ public class TestBot extends TelegramLongPollingBot {
                 sendMsg(message, "Отлично", false, Arrays.asList("Сколько тебе лет", "который час"));
                 break;
             case "сколько тебе лет":
-                sendMsg(message, "Роботам такие вопросы не задают.", false,
-                        Arrays.asList("Привет", "Пока"));
+                sendMsg(message, "Роботам такие вопросы не задают.", true,
+                        Arrays.asList("Привет", "Пока", "Распечатать чек"));
                 break;
             case "время":
             case "который час": {
