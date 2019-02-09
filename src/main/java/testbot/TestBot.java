@@ -18,7 +18,6 @@ public class TestBot extends TelegramLongPollingBot {
     private static final String BOT_NAME = "Misha2010TestBot";
     private static final String BOT_TOKEN = "722649547:AAFobeolFSuWDdTU3PBiRqEDdJVkF_Wnc40";
 
-
     @Override
     public void onUpdateReceived(Update update) {
         Message message = update.getMessage();
@@ -71,7 +70,7 @@ public class TestBot extends TelegramLongPollingBot {
         sendMessage.enableMarkdown(true);
         sendMessage.setChatId(message.getChatId().toString());
 //        sendMessage.setReplyToMessageId(message.getMessageId());
-        if (needname) text = text + ", "+ message.getChat().getFirstName() + "!";
+        if (needname) text = text + ", " + message.getChat().getFirstName() + "!";
         sendMessage.setText(text);
 
         AddButtons(sendMessage, FirstRowCaptions, SecondRowCaptions);
@@ -83,15 +82,18 @@ public class TestBot extends TelegramLongPollingBot {
         }
     }
 
-    private void sendMsg(Message message, String text, Boolean needname, List<String> FirstRowCaptions)  {
+    private void sendMsg(Message message, String text, Boolean needname, List<String> FirstRowCaptions) {
         sendMsg(message, text, needname, FirstRowCaptions, Collections.emptyList());
     }
 
-    private void sendMsg(Message message, String text, Boolean needname)  {
+    private void sendMsg(Message message, String text, Boolean needname) {
         sendMsg(message, text, needname, Collections.emptyList(), Collections.emptyList());
     }
 
-    private void AddButtons(SendMessage sendMessage, List<String> FirstRowCaptions, List<String> SecondRowCaptions ) {
+    private void AddButtons(SendMessage sendMessage, List<String> FirstRowCaptions, List<String> SecondRowCaptions) {
+
+        if ((FirstRowCaptions.size() == 0) && (SecondRowCaptions.size() == 0)) return;
+
         // Создаем клавиуатуру
         ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup();
         sendMessage.setReplyMarkup(replyKeyboardMarkup);
@@ -103,26 +105,22 @@ public class TestBot extends TelegramLongPollingBot {
         List<KeyboardRow> keyboard = new ArrayList<>();
 
         // Первая строчка клавиатуры
-        KeyboardRow keyboardFirstRow = new KeyboardRow();
-        for (String temp: FirstRowCaptions)
-            keyboardFirstRow.add(new KeyboardButton(temp));
+        if (FirstRowCaptions.size() > 0) {
+            KeyboardRow keyboardFirstRow = new KeyboardRow();
+            for (String temp : FirstRowCaptions)
+                keyboardFirstRow.add(new KeyboardButton(temp));
+            // Добавляем строчкe клавиатуры в список
+            keyboard.add(keyboardFirstRow);
+        }
+
         // Добавляем кнопки в первую строчку клавиатуры
-        KeyboardRow keyboardSecondRow = new KeyboardRow();
-        for (String temp: SecondRowCaptions)
-            keyboardSecondRow.add(new KeyboardButton(temp));
-        // Добавляем кнопки во вторую строчку клавиатуры
-/*        keyboardFirstRow.add(new KeyboardButton("Привет"));
-        keyboardFirstRow.add(new KeyboardButton("Пока"));
+        if (SecondRowCaptions.size() > 0) {
+            KeyboardRow keyboardSecondRow = new KeyboardRow();
+            for (String temp : SecondRowCaptions)
+                keyboardSecondRow.add(new KeyboardButton(temp));
+            keyboard.add(keyboardSecondRow);
+        }
 
-        // Вторая строчка клавиатуры
-        KeyboardRow keyboardSecondRow = new KeyboardRow();
-        // Добавляем кнопки во вторую строчку клавиатуры
-        keyboardSecondRow.add(new KeyboardButton("Погода"));
-        keyboardSecondRow.add(new KeyboardButton("Кнопка 2"));*/
-
-        // Добавляем все строчки клавиатуры в список
-        keyboard.add(keyboardFirstRow);
-        keyboard.add(keyboardSecondRow);
         // и устанваливаем этот список нашей клавиатуре
         replyKeyboardMarkup.setKeyboard(keyboard);
     }
