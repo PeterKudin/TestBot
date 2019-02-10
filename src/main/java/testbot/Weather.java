@@ -6,6 +6,6 @@ public class Weather {
 
     }
     public String getSeason(String city) {
-        return  "Сезон зима";
+        return  "В городе " +city+" весна.";
     }
 }
