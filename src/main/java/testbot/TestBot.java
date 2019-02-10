@@ -35,8 +35,9 @@ public class TestBot extends TelegramLongPollingBot {
                 sendMsg(message, "До свидания", true);
                 break;
             case "какая погода":
-                testbot.Weather weather = new testbot.Weather();
-                sendMsg(message, weather.getWeather("Ногинск"), true);
+                Weather weather = new Weather();
+                String str = weather.getWeather("Москва") + " " + weather.getSeason("Москва");
+                sendMsg(message, str, true);
                 break;
             case "как дела":
                 sendMsg(message, "Отлично", false, Arrays.asList("Сколько тебе лет", "который час"));

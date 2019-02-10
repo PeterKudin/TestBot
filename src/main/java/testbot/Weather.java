@@ -1,8 +1,11 @@
 package testbot;
 
 public class Weather {
-   public String getWeather(String city) {
-        return  "Погода в городе " +  city + "." +
-                "Я не знаю какая погода, но обещаю что скоро научусь и буду про нее рассказывать";
+    public String getWeather(String city) {
+        return  "Сегодня в городе " +  city + " -4 градуса. " ;
+
+    }
+    public String getSeason(String city) {
+        return  "Сезон зима";
     }
 }
