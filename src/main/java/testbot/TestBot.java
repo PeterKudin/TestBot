@@ -17,7 +17,7 @@ import java.text.DateFormat;
 public class TestBot extends TelegramLongPollingBot {
     private static final String BOT_NAME = "Misha2010TestBot";
     private static final String BOT_TOKEN = "722649547:AAFobeolFSuWDdTU3PBiRqEDdJVkF_Wnc40";
-    private String lastmsg;
+    private String lastmsg = "";
 
     @Override
     public void onUpdateReceived(Update update) {
