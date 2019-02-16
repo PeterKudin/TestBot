@@ -26,7 +26,7 @@ public class TestBot extends TelegramLongPollingBot {
             switch (message.getText().toLowerCase()) {
                 case "привет":
                     if (lastmsg.equals("привет")) {
-                        sendMsg(message, "Мы уже здоровались. Второй раз здороваться не надо (правила этикета)", true);
+                        sendMsg(message, "Мы уже здоровались. Второй раз здороваться не надо (правила этикета)", false);
                     } else {
                         sendMsg(message, "Привет", true);
                     }
