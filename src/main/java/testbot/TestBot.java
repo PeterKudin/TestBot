@@ -17,46 +17,54 @@ import java.text.DateFormat;
 public class TestBot extends TelegramLongPollingBot {
     private static final String BOT_NAME = "Misha2010TestBot";
     private static final String BOT_TOKEN = "722649547:AAFobeolFSuWDdTU3PBiRqEDdJVkF_Wnc40";
+    private String lastmsg;
 
     @Override
     public void onUpdateReceived(Update update) {
         Message message = update.getMessage();
-        if (message != null && message.hasText()) switch (message.getText().toLowerCase()) {
-            case "привет":
-                sendMsg(message, "Привет", true);
-                break;
-            case "здравствуй":
-                sendMsg(message, "Здравствуй", true);
-                break;
-            case "пока":
-                sendMsg(message, "Пока", true);
-                break;
-            case "до свидания":
-                sendMsg(message, "До свидания", true);
-                break;
-            case "какая погода":
-                Weather weather = new Weather();
-                String str = weather.getWeather("Ногинск") + " " + weather.getSeason("Ногинск");
-                sendMsg(message, str, true);
-                break;
-            case "как дела":
-                sendMsg(message, "Отлично", false, Arrays.asList("Сколько тебе лет", "который час"));
-                break;
-            case "сколько тебе лет":
-                sendMsg(message, "Роботам такие вопросы не задают.", true,
-                        Arrays.asList("Привет", "Пока", "Распечатать чек"));
-                break;
-            case "время":
-            case "который час": {
-                Date date = new Date();
-                DateFormat df = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
-                df.setTimeZone(TimeZone.getTimeZone("Europe/Moscow"));
-                sendMsg(message, "Сейчас " + df.format(date), false);
-                break;
+        if (message != null && message.hasText()) {
+            switch (message.getText().toLowerCase()) {
+                case "привет":
+                    if (lastmsg.equals("привет")) {
+                        sendMsg(message, "Мы уже здоровались. Второй раз здороваться не надо (правила этикета)", true);
+                    } else {
+                        sendMsg(message, "Привет", true);
+                    }
+                    break;
+                case "здравствуй":
+                    sendMsg(message, "Здравствуй", true);
+                    break;
+                case "пока":
+                    sendMsg(message, "Пока", true);
+                    break;
+                case "до свидания":
+                    sendMsg(message, "До свидания", true);
+                    break;
+                case "какая погода":
+                    Weather weather = new Weather();
+                    String str = weather.getWeather("Ногинск") + " " + weather.getSeason("Ногинск");
+                    sendMsg(message, str, true);
+                    break;
+                case "как дела":
+                    sendMsg(message, "Отлично", false, Arrays.asList("Сколько тебе лет", "который час"));
+                    break;
+                case "сколько тебе лет":
+                    sendMsg(message, "Роботам такие вопросы не задают.", true,
+                            Arrays.asList("Привет", "Пока", "Распечатать чек"));
+                    break;
+                case "время":
+                case "который час": {
+                    Date date = new Date();
+                    DateFormat df = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
+                    df.setTimeZone(TimeZone.getTimeZone("Europe/Moscow"));
+                    sendMsg(message, "Сейчас " + df.format(date), false);
+                    break;
+                }
+                default:
+                    sendMsg(message, "Я не знаю что ответить на это", false);
+                    break;
             }
-            default:
-                sendMsg(message, "Я не знаю что ответить на это", false);
-                break;
+            lastmsg = message.getText().toLowerCase();
         }
     }
 
