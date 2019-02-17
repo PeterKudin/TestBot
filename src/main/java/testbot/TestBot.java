@@ -21,50 +21,59 @@ public class TestBot extends TelegramLongPollingBot {
 
     @Override
     public void onUpdateReceived(Update update) {
+
         Message message = update.getMessage();
-        if (message != null && message.hasText()) {
-            switch (message.getText().toLowerCase()) {
-                case "привет":
-                    if (lastmsg.equals("привет")) {
-                        sendMsg(message, "Мы уже здоровались. Второй раз здороваться не надо (правила этикета)", false);
-                    } else {
-                        sendMsg(message, "Привет", true);
+
+        try {
+            if (Lesson2(update)) return;
+
+            if (message != null && message.hasText()) {
+                switch (message.getText().toLowerCase()) {
+                    case "привет":
+                        if (lastmsg.equals("привет")) {
+                            sendMsg(message, "Мы уже здоровались. Второй раз здороваться не надо (правила этикета)", false);
+                        } else {
+                            sendMsg(message, "Привет", true);
+                        }
+                        break;
+                    case "здравствуй":
+                        sendMsg(message, "Здравствуй", true);
+                        break;
+                    case "пока":
+                        sendMsg(message, "Пока", true);
+                        break;
+                    case "до свидания":
+                        sendMsg(message, "До свидания", true);
+                        break;
+                    case "какая погода":
+                        Weather weather = new Weather();
+                        String str = weather.getWeather("Ногинск") + " " + weather.getSeason("Ногинск");
+                        sendMsg(message, str, true);
+                        break;
+                    case "как дела":
+                        sendMsg(message, "Отлично", false, Arrays.asList("Сколько тебе лет", "который час"));
+                        break;
+                    case "сколько тебе лет":
+                        sendMsg(message, "Роботам такие вопросы не задают.", true,
+                                Arrays.asList("Привет", "Пока", "Распечатать чек"));
+                        break;
+                    case "время":
+                    case "который час": {
+                        Date date = new Date();
+                        DateFormat df = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
+                        df.setTimeZone(TimeZone.getTimeZone("Europe/Moscow"));
+                        sendMsg(message, "Сейчас " + df.format(date), false);
+                        break;
                     }
-                    break;
-                case "здравствуй":
-                    sendMsg(message, "Здравствуй", true);
-                    break;
-                case "пока":
-                    sendMsg(message, "Пока", true);
-                    break;
-                case "до свидания":
-                    sendMsg(message, "До свидания", true);
-                    break;
-                case "какая погода":
-                    Weather weather = new Weather();
-                    String str = weather.getWeather("Ногинск") + " " + weather.getSeason("Ногинск");
-                    sendMsg(message, str, true);
-                    break;
-                case "как дела":
-                    sendMsg(message, "Отлично", false, Arrays.asList("Сколько тебе лет", "который час"));
-                    break;
-                case "сколько тебе лет":
-                    sendMsg(message, "Роботам такие вопросы не задают.", true,
-                            Arrays.asList("Привет", "Пока", "Распечатать чек"));
-                    break;
-                case "время":
-                case "который час": {
-                    Date date = new Date();
-                    DateFormat df = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
-                    df.setTimeZone(TimeZone.getTimeZone("Europe/Moscow"));
-                    sendMsg(message, "Сейчас " + df.format(date), false);
-                    break;
+                    default:
+                        sendMsg(message, "Я не знаю что ответить на это", false);
+                        break;
                 }
-                default:
-                    sendMsg(message, "Я не знаю что ответить на это", false);
-                    break;
+
             }
-            lastmsg = message.getText().toLowerCase();
+        } finally {
+            if (message != null && message.hasText())
+               lastmsg = message.getText().toLowerCase();
         }
     }
 
@@ -76,6 +85,29 @@ public class TestBot extends TelegramLongPollingBot {
     @Override
     public String getBotToken() {
         return BOT_TOKEN;
+    }
+
+    private Boolean Lesson2(Update update) {
+        Message message = update.getMessage();
+        if (message != null && message.hasText()) {
+            switch (message.getText().toLowerCase()) {
+                case "привет":
+                    sendMsg(message, "Привет, выберите действие 1,2,3", false);
+                    break;
+                case "1":
+                    sendMsg(message, "Вы нажали кнопку 1", false);
+                    break;
+                case "2":
+                    sendMsg(message, "Вы нажали кнопку 2", false);
+                    break;
+                case "3":
+                    sendMsg(message, "Вы нажали кнопку 3", false);
+                    break;
+                default:
+                    return false;
+            }
+        }
+        return true;
     }
 
     private void sendMsg(Message message, String text, Boolean needname, List<String> FirstRowCaptions, List<String> SecondRowCaptions) {
