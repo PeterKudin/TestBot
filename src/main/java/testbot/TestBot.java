@@ -18,9 +18,41 @@ public class TestBot extends TelegramLongPollingBot {
     private static final String BOT_NAME = "Misha2010TestBot";
     private static final String BOT_TOKEN = "722649547:AAFobeolFSuWDdTU3PBiRqEDdJVkF_Wnc40";
     private String lastmsg = "";
+    private List<BotCommand> botCommands = new ArrayList<>();
+
+    TestBot(){
+        botCommands.add(new BotCommandHello());
+    }
 
     @Override
     public void onUpdateReceived(Update update) {
+
+        Message message = update.getMessage();
+        if (message == null  || !message.hasText()) return;
+
+        Answer answer = new Answer();
+        for (BotCommand bot : botCommands){
+          if (bot.process(message.getText(), answer)) {
+              sendMsg(message, answer.text, answer.withname, answer.Row1, answer.Row2);
+              return;
+          }
+    }
+
+        oldOnUpdateReceived(update);
+    }
+
+    @Override
+    public String getBotUsername() {
+        return BOT_NAME;
+    }
+
+    @Override
+    public String getBotToken() {
+        return BOT_TOKEN;
+    }
+
+
+    private void oldOnUpdateReceived(Update update) {
 
         Message message = update.getMessage();
 
@@ -73,18 +105,8 @@ public class TestBot extends TelegramLongPollingBot {
             }
         } finally {
             if (message != null && message.hasText())
-               lastmsg = message.getText().toLowerCase();
+                lastmsg = message.getText().toLowerCase();
         }
-    }
-
-    @Override
-    public String getBotUsername() {
-        return BOT_NAME;
-    }
-
-    @Override
-    public String getBotToken() {
-        return BOT_TOKEN;
     }
 
     private Boolean Lesson2(Update update) {
