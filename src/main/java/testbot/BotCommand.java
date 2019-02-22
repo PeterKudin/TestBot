@@ -11,7 +11,7 @@ class Answer {
 }
 abstract public class BotCommand {
 
-    public abstract Boolean process(String text, Answer answer);
+    public abstract void process(String text, Answer answer);
 
 
 }

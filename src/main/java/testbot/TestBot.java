@@ -1,6 +1,5 @@
 package testbot;
 
-import org.apache.commons.lang3.ArrayUtils;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.objects.Update;
@@ -11,8 +10,6 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.Keyboard
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
 
 import java.util.*;
-import java.text.SimpleDateFormat;
-import java.text.DateFormat;
 
 public class TestBot extends TelegramLongPollingBot {
     private static final String BOT_NAME = "Misha2010TestBot";
@@ -20,23 +17,27 @@ public class TestBot extends TelegramLongPollingBot {
     private String lastmsg = "";
     private List<BotCommand> botCommands = new ArrayList<>();
 
-    TestBot(){
+    TestBot() {
         botCommands.add(new BotCommandHello());
+        botCommands.add(new BotCommandWeather());
+        botCommands.add(new BotCommandTime());
+        botCommands.add(new BotCommandLesson2());
     }
 
     @Override
     public void onUpdateReceived(Update update) {
 
         Message message = update.getMessage();
-        if (message == null  || !message.hasText()) return;
+        if (message == null || !message.hasText()) return;
 
         Answer answer = new Answer();
-        for (BotCommand bot : botCommands){
-          if (bot.process(message.getText(), answer)) {
-              sendMsg(message, answer.text, answer.withname, answer.Row1, answer.Row2);
-              return;
-          }
-    }
+        for (BotCommand bot : botCommands) {
+            bot.process(message.getText(), answer);
+            if (answer.text.length() != 0) {
+                sendMsg(message, answer.text, answer.withname, answer.Row1, answer.Row2);
+                return;
+            }
+        }
 
         oldOnUpdateReceived(update);
     }
@@ -57,8 +58,6 @@ public class TestBot extends TelegramLongPollingBot {
         Message message = update.getMessage();
 
         try {
-            if (Lesson2(update)) return;
-
             if (message != null && message.hasText()) {
                 switch (message.getText().toLowerCase()) {
                     case "привет":
@@ -77,11 +76,6 @@ public class TestBot extends TelegramLongPollingBot {
                     case "до свидания":
                         sendMsg(message, "До свидания", true);
                         break;
-                    case "какая погода":
-                        Weather weather = new Weather();
-                        String str = weather.getWeather("Ногинск") + " " + weather.getSeason("Ногинск");
-                        sendMsg(message, str, true);
-                        break;
                     case "как дела":
                         sendMsg(message, "Отлично", false, Arrays.asList("Сколько тебе лет", "который час"));
                         break;
@@ -89,47 +83,15 @@ public class TestBot extends TelegramLongPollingBot {
                         sendMsg(message, "Роботам такие вопросы не задают.", true,
                                 Arrays.asList("Привет", "Пока", "Распечатать чек"));
                         break;
-                    case "время":
-                    case "который час": {
-                        Date date = new Date();
-                        DateFormat df = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
-                        df.setTimeZone(TimeZone.getTimeZone("Europe/Moscow"));
-                        sendMsg(message, "Сейчас " + df.format(date), false);
-                        break;
-                    }
                     default:
                         sendMsg(message, "Я не знаю что ответить на это", false);
                         break;
                 }
-
             }
         } finally {
             if (message != null && message.hasText())
                 lastmsg = message.getText().toLowerCase();
         }
-    }
-
-    private Boolean Lesson2(Update update) {
-        Message message = update.getMessage();
-        if (message != null && message.hasText()) {
-            switch (message.getText().toLowerCase()) {
-                case "привет":
-                    sendMsg(message, "Привет, выберите действие 1,2,3", false);
-                    break;
-                case "1":
-                    sendMsg(message, "Вы нажали кнопку 1", false);
-                    break;
-                case "2":
-                    sendMsg(message, "Вы нажали кнопку 2", false);
-                    break;
-                case "3":
-                    sendMsg(message, "Вы нажали кнопку 3", false);
-                    break;
-                default:
-                    return false;
-            }
-        }
-        return true;
     }
 
     private void sendMsg(Message message, String text, Boolean needname, List<String> FirstRowCaptions, List<String> SecondRowCaptions) {
