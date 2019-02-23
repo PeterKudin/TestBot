@@ -7,6 +7,7 @@ public class BotCommandLesson3 extends BotCommand {
         if (text.equals("урок 3") || (text.equals("привет"))) {
             answer.text = "Привет, выберите пример, который ";
             answer.Row1.add("123+534");
+            answer.Row1.add("568+432");
             answer.Row2.add("781+236");
             answer.Row2.add("809+149");
         }
@@ -16,5 +17,7 @@ public class BotCommandLesson3 extends BotCommand {
             answer.text = "781+236=" + (781 + 236);
         if (text.equals("809+149"))
             answer.text = "809+149=" + (809 + 149);
+        if (text.equals("568+432"))
+            answer.text = "568+432=" + (568 + 432);
     }
 }
