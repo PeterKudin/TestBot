@@ -30,10 +30,11 @@ public class TestBot extends TelegramLongPollingBot {
 
         Message message = update.getMessage();
         if (message == null || !message.hasText()) return;
+        String text = message.getText().toLowerCase();
 
         Answer answer = new Answer();
         for (BotCommand bot : botCommands) {
-            bot.process(message.getText(), answer);
+            bot.process(text, answer);
             if (answer.text.length() != 0) {
                 sendMsg(message, answer.text, answer.withname, answer.Row1, answer.Row2);
                 return;
