@@ -8,6 +8,8 @@ class Answer {
     String text = "";
     List<String> Row1 = new ArrayList<>();
     List<String> Row2 = new ArrayList<>();
+    List<String> Row3 = new ArrayList<>();
+    List<String> Row4 = new ArrayList<>();
 }
 abstract public class BotCommand {
 

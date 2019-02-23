@@ -10,6 +10,8 @@ public class BotCommandLesson3 extends BotCommand {
             answer.Row1.add("568+432");
             answer.Row2.add("781+236");
             answer.Row2.add("809+149");
+            answer.Row3.add("row3");
+            answer.Row4.add("row4");
         }
         if (text.equals("123+534"))
             answer.text = text + "=" + (123 + 534);
