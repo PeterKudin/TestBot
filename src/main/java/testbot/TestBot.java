@@ -18,11 +18,11 @@ public class TestBot extends TelegramLongPollingBot {
     private List<BotCommand> botCommands = new ArrayList<>();
 
     TestBot() {
-        botCommands.add(new BotCommandHello());
         botCommands.add(new BotCommandWeather());
         botCommands.add(new BotCommandTime());
         botCommands.add(new BotCommandLesson2());
         botCommands.add(new BotCommandLesson3());
+        botCommands.add(new BotCommandHello());
     }
 
     @Override
