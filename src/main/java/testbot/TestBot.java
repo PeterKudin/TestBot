@@ -100,66 +100,17 @@ public class TestBot extends TelegramLongPollingBot {
         }
     }
 
-    private void sendMsg(Message message, String text, Boolean needname, List<String> FirstRowCaptions, List<String> SecondRowCaptions) {
-        SendMessage sendMessage = new SendMessage();
-        sendMessage.enableMarkdown(true);
-        sendMessage.setChatId(message.getChatId().toString());
-//        sendMessage.setReplyToMessageId(message.getMessageId());
-        if (needname) text = text + ", " + message.getChat().getFirstName() + "!";
-        sendMessage.setText(text);
-
-        AddButtons(sendMessage, FirstRowCaptions, SecondRowCaptions);
-
-        try {
-            execute(sendMessage);
-        } catch (TelegramApiException e) {
-            e.printStackTrace();
-        }
-    }
-
     private void sendMsg(Message message, String text, Boolean needname, List<String> FirstRowCaptions) {
-        sendMsg(message, text, needname, FirstRowCaptions, Collections.emptyList());
+        Answer answer = new Answer();
+        answer.text = text;
+        answer.withname = needname;
+        answer.Row1 = FirstRowCaptions;
+        sendMsg(message, answer);
     }
 
     private void sendMsg(Message message, String text, Boolean needname) {
-        sendMsg(message, text, needname, Collections.emptyList(), Collections.emptyList());
+        sendMsg(message, text, needname, Collections.emptyList());
     }
-
-    private void AddButtons(SendMessage sendMessage, List<String> FirstRowCaptions, List<String> SecondRowCaptions) {
-
-        if ((FirstRowCaptions.size() == 0) && (SecondRowCaptions.size() == 0)) return;
-
-        // Создаем клавиуатуру
-        ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup();
-        sendMessage.setReplyMarkup(replyKeyboardMarkup);
-        replyKeyboardMarkup.setSelective(true);
-        replyKeyboardMarkup.setResizeKeyboard(true);
-        replyKeyboardMarkup.setOneTimeKeyboard(false);
-
-        // Создаем список строк клавиатуры
-        List<KeyboardRow> keyboard = new ArrayList<>();
-
-        // Первая строчка клавиатуры
-        if (FirstRowCaptions.size() > 0) {
-            KeyboardRow keyboardFirstRow = new KeyboardRow();
-            for (String temp : FirstRowCaptions)
-                keyboardFirstRow.add(new KeyboardButton(temp));
-            // Добавляем строчкe клавиатуры в список
-            keyboard.add(keyboardFirstRow);
-        }
-
-        // Добавляем кнопки в первую строчку клавиатуры
-        if (SecondRowCaptions.size() > 0) {
-            KeyboardRow keyboardSecondRow = new KeyboardRow();
-            for (String temp : SecondRowCaptions)
-                keyboardSecondRow.add(new KeyboardButton(temp));
-            keyboard.add(keyboardSecondRow);
-        }
-
-        // и устанваливаем этот список нашей клавиатуре
-        replyKeyboardMarkup.setKeyboard(keyboard);
-    }
-
 
     private void AddButtons(SendMessage sendMessage, List<List<String>> RowList) {
 
