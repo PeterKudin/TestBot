@@ -22,6 +22,7 @@ public class TestBot extends TelegramLongPollingBot {
         botCommands.add(new BotCommandWeather());
         botCommands.add(new BotCommandTime());
         botCommands.add(new BotCommandLesson2());
+        botCommands.add(new BotCommandLesson3());
     }
 
     @Override

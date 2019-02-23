@@ -4,7 +4,7 @@ public class BotCommandLesson2 extends BotCommand {
 
     public void process(String text, Answer answer) {
 
-        if (text.equalsIgnoreCase("лекция 2")) {
+        if (text.equalsIgnoreCase("урок 2")) {
             answer.text = "Привет, выберите действие 1,2,3";
             answer.Row1.add("1");
             answer.Row1.add("2");
