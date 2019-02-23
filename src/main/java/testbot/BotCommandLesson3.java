@@ -13,5 +13,9 @@ public class BotCommandLesson3 extends BotCommand {
             int i = 123 + 534;
             answer.text = "123+534="+ i;
         }
+        if (text.equalsIgnoreCase("781+236")) {
+            int i = 781 + 236;
+            answer.text = "781+236="+ i;
+        }
     }
 }
