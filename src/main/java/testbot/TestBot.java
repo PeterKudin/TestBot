@@ -93,7 +93,7 @@ public class TestBot extends TelegramLongPollingBot {
         if (answer.withname) answer.text = answer.text + ", " + message.getChat().getFirstName() + "!";
         sendMessage.setText(answer.text);
 
-        AddButtons(sendMessage, Arrays.asList(answer.Row1, answer.Row2, answer.Row3, answer.Row4));
+        AddButtons(sendMessage, Arrays.asList(answer.Row1, answer.Row2, answer.Row3, answer.Row4, answer.Row5, answer.Row6));
 
         try {
             execute(sendMessage);

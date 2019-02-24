@@ -10,6 +10,8 @@ class Answer {
     List<String> Row2 = new ArrayList<>();
     List<String> Row3 = new ArrayList<>();
     List<String> Row4 = new ArrayList<>();
+    List<String> Row5 = new ArrayList<>();
+    List<String> Row6 = new ArrayList<>();
 }
 abstract public class BotCommand {
 
