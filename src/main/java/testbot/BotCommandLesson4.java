@@ -15,7 +15,7 @@ public class BotCommandLesson4 extends BotCommand {
             try {
                 answer.text = "Я бот, выполнил расчет, " + text + "=" + engine.eval(text).toString();
             } catch (ScriptException e) {
-                answer.text = "Не могу вычислить " + text + ", ошибка " + e.getMessage();
+//                answer.text = "Не могу вычислить " + text + ", ошибка " + e.getMessage()
             }
         }
     }
