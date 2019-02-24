@@ -8,13 +8,12 @@ public class BotCommandLesson4 extends BotCommand {
 
     public void process(String text, Answer answer) {
 
-        if (text.equals("урок 4") || (text.equals("посчитай"))) {
-
+        if (text.contains("+") || (text.contains("-"))) {
             ScriptEngineManager mgr = new ScriptEngineManager();
             ScriptEngine engine = mgr.getEngineByName("JavaScript");
 
             try {
-                answer.text = engine.eval(text).toString();
+                answer.text = "Я бот, выполнил расчет, " + text + "=" + engine.eval(text).toString();
             } catch (ScriptException e) {
                 answer.text = "Не могу вычислить " + text + ", ошибка " + e.getMessage();
             }
