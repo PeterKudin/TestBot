@@ -4,7 +4,7 @@ public class BotCommandLesson3 extends BotCommand {
 
     public void process(String text, Answer answer) {
 
-        if (text.equals("урок 3") || (text.equals("привет"))) {
+        if (text.equals("урок 3")) {
             answer.text = "Привет, выберите пример, который ";
             answer.Row1.add("123+534");
             answer.Row1.add("568+432");
