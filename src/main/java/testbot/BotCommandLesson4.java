@@ -8,7 +8,7 @@ public class BotCommandLesson4 extends BotCommand {
 
     public void process(String text, Answer answer) {
 
-        if (text.contains("+") || (text.contains("-"))) {
+        if (text.contains("+") || text.contains("-")|| text.contains("*")|| text.contains("/")) {
             ScriptEngineManager mgr = new ScriptEngineManager();
             ScriptEngine engine = mgr.getEngineByName("JavaScript");
 
