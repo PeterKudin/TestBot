@@ -9,8 +9,8 @@ public class BotCommandWeather extends BotCommand {
     }
 
     private String getWeather(String city) {
-        return "Сегодня в городе " + city + " +3 градуса. " +
-                "Завтра утром 0...+2, днем +1..+2";
+        return "Сегодня в городе " + city + " +1 градус. " +
+                "Завтра утром -5...-2, днем -2..0";
 
     }
 
