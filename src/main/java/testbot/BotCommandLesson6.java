@@ -17,22 +17,29 @@
 */
 package testbot;
 
-public class BotCommandLesson5 extends BotCommand {
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
+
+public class BotCommandLesson6 extends BotCommand {
+
+    private  String eval(String expression) {
+        ScriptEngineManager mgr = new ScriptEngineManager();
+        ScriptEngine engine = mgr.getEngineByName("JavaScript");
+        try {
+            return expression + "=" + engine.eval(expression).toString();
+        } catch (ScriptException e) {
+            return  "Не могу вычислить " + expression + ", ошибка " + e.getMessage();
+        }
+
+    }
 
     public void process(String text, Answer answer) {
 
-        if (text.equals("урок 5") ) {
-            answer.text = "Привет! Я умею рисовать клавиатуры в форме ёлочки.";
-            answer.Row1.add("Кнопка");
-            answer.Row2.add("Кнопка" );
-            answer.Row2.add("Кнопка" );
-            answer.Row3.add("Кнопка");
-            answer.Row3.add("Кнопка");
-            answer.Row3.add("Кнопка");
-            answer.Row4.add("Кнопка");
-            answer.Row4.add("Кнопка");
-            answer.Row4.add("Кнопка");
-            answer.Row4.add("Кнопка");
+        if (text.equals("урок 6") || (text.equals("привет"))) {
+            answer.text = "Привет! Я решаю примеры из тренажера."
+              + " " + eval("39+48")
+              + " " + eval("48+36");
         }
     }
 }
