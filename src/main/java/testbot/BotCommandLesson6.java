@@ -1,19 +1,5 @@
 /*
-Задание 5: сделать класс BotCommandLesson5, создать при помощи него клавиатуру в форме ёлочки
-
-        1. Скопировать класс BotCommandLesson4 в BotCommandLesson5
-        (Открыть дерево проекта, нажать правой кнопкой на BotCommandLesson4, выбрать Copy, затем выбрать Paste.
-        Откроется диалог копирования класса, ввести новое название класса)
-        2. Подключить новый класс к боту
-        В модуле TestBot.java в конструкторе TestBot() вписать строчку по аналогии с BotCommandLesson4
-        botCommands.add(new BotCommandLesson5());
-        3. Запрограммировать в BotCommandLesson5 следующий диалог:
-        - Пользователь пишет "Привет" или "Урок 5"
-        - Бот отвечает: "Привет! Я умею рисовать клавиатуры в форме ёлочки" и создает следующую клавиатуру:
-        Кнопка
-        Кнопка Кнопка
-        Кнопка Кнопка Кнопка
-        Кнопка Кнопка Кнопка Кнопка
+Задание 6: сделать класс BotCommandLesson6, решить примеры из тренажера по математике стр.54
 */
 package testbot;
 
@@ -36,7 +22,7 @@ public class BotCommandLesson6 extends BotCommand {
 
     public void process(String text, Answer answer) {
 
-        if (text.equals("урок 6") || (text.equals("привет"))) {
+        if (text.equals("урок 6") ) {
             answer.text = "Привет! Я решаю примеры из тренажера."
               + " " + eval("39+48") + " " + eval("48+36")
               + " " + eval("81-47") + " " + eval("38+46")

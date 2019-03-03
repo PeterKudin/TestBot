@@ -6,8 +6,11 @@ public class BotCommandHello extends BotCommand {
         if (text.equalsIgnoreCase("привет")) {
             answer.withname = true;
             answer.text = "Привет";
-            answer.Row1.add("1+1");
-            answer.Row1.add("2+2");
+            answer.Row1.add("Урок 2");
+            answer.Row1.add("Урок 3");
+            answer.Row2.add("Урок 4");
+            answer.Row2.add("Урок 5");
+            answer.Row3.add("Урок 6");
         }
     }
 }
