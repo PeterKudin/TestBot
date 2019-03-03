@@ -11,6 +11,7 @@ public class BotCommandHello extends BotCommand {
             answer.Row2.add("Урок 4");
             answer.Row2.add("Урок 5");
             answer.Row3.add("Урок 6");
+            answer.Row3.add("Урок 7");
         }
     }
 }
