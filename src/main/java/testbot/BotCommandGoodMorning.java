@@ -5,7 +5,7 @@ import java.util.Calendar;
 public class BotCommandGoodMorning extends BotCommand {
 
     public void process(String text, Answer answer) {
-        if (text.equalsIgnoreCase("привет")) {
+        if (text.equals("привет")) {
             answer.withname = true;
 
             Calendar cal = Calendar.getInstance();
