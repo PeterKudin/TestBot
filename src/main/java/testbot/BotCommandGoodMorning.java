@@ -20,6 +20,7 @@ public class BotCommandGoodMorning extends BotCommand {
             if ((hour >= 16) && (hour <= 23)) {
                 answer.text = "Добрый вечер";
             }
+            answer.text = "Сейчас " + hour + " часов" + answer.text;
         }
     }
 }
