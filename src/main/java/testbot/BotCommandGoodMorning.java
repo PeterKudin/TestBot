@@ -1,6 +1,7 @@
 package testbot;
 
 import java.util.Calendar;
+import java.util.TimeZone;
 
 public class BotCommandGoodMorning extends BotCommand {
 
@@ -9,6 +10,7 @@ public class BotCommandGoodMorning extends BotCommand {
             answer.withname = true;
 
             Calendar cal = Calendar.getInstance();
+            cal.setTimeZone(TimeZone.getTimeZone("Europe/Moscow"));
             int hour = cal.get(Calendar.HOUR_OF_DAY);
 
             if ((hour >= 5) && (hour <= 11)) {
