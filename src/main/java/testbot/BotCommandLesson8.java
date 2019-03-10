@@ -34,10 +34,10 @@ public class BotCommandLesson8 extends BotCommand {
 
                     );
 
-            answer.text = "Привет! Я решаю примеры из тренажера.";
-            for (String rowExp: expList) {
-                answer.text = answer.text  + " " + eval(rowExp);
-            }
+            StringBuilder stringBuilder = new StringBuilder(310);
+            for (String rowExp: expList)
+                stringBuilder.append(" ").append(eval(rowExp));
+            answer.text = "Привет! Я решаю примеры из тренажера. " + stringBuilder.toString();
         }
     }
 }
