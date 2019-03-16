@@ -13,6 +13,7 @@ public class BotCommandHello extends BotCommand {
             answer.Row3.add("Урок 6");
             answer.Row3.add("Урок 7");
             answer.Row4.add("Урок 8");
+            answer.Row4.add("Урок 9");
         }
     }
 }
