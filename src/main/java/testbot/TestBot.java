@@ -27,6 +27,7 @@ public class TestBot extends TelegramLongPollingBot {
         botCommands.add(new BotCommandLesson7());
         botCommands.add(new BotCommandLesson8());
         botCommands.add(new BotCommandLesson9());
+        botCommands.add(new BotCommandLesson10());
         botCommands.add(new BotCommandCalc());
         botCommands.add(new BotCommandGoodMorning());
         botCommands.add(new BotCommandHello());

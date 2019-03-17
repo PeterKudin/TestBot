@@ -8,12 +8,13 @@ public class BotCommandHello extends BotCommand {
             answer.text = "Привет";
             answer.Row1.add("Урок 2");
             answer.Row1.add("Урок 3");
-            answer.Row2.add("Урок 4");
+            answer.Row1.add("Урок 4");
             answer.Row2.add("Урок 5");
-            answer.Row3.add("Урок 6");
-            answer.Row3.add("Урок 7");
-            answer.Row4.add("Урок 8");
-            answer.Row4.add("Урок 9");
+            answer.Row2.add("Урок 6");
+            answer.Row2.add("Урок 7");
+            answer.Row3.add("Урок 8");
+            answer.Row3.add("Урок 9");
+            answer.Row3.add("Урок 10");
         }
     }
 }
