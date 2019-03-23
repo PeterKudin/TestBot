@@ -7,7 +7,11 @@ import org.telegram.telegrambots.meta.TelegramBotsApi;
 public class Main {
 
     public static void main(String[] args) {
-       // Initialize Api Context
+//        BotCommandWeather bot = new BotCommandWeather();
+//        Weather weather = bot.getWeatherByCityName("Noginsk");
+//        System.out.println("weather " + weather.city + " temp=" + weather.temp);
+
+        // Initialize Api Context
         ApiContextInitializer.init();
 
         // Instantiate Telegram Bots API
