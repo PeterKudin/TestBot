@@ -68,7 +68,7 @@ public class BotCommandWeather extends BotCommand {
             Weather noginsk = getWeatherByCityName("Ногинск");
             answer.text = "Погода в городе Ногинске "+noginsk.toString();
         }
-        if (text.contains("погода") && text.contains("москва")) {
+        if (text.contains("погода") && text.contains("москв")) {
             Weather moscow = getWeatherByCityName("Москва");
             answer.text = "Погода в городе Москва "+moscow.toString();
         }
