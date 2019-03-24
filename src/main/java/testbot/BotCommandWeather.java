@@ -41,12 +41,17 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 class Weather {
-    String city;
-    String temp;
-    String temp_min;
-    String temp_max;
-    String description;
-    String icon_id;
+    String city; // Город
+    String temp; // Температура
+    String temp_min; // Минимальная температура
+    String temp_max; // Максимальная температура
+    String description; // Описание погоды
+    String icon_id; // Картинка с погодой
+
+    public String toString() {
+        return temp + " градусов, " + description +
+                " http://openweathermap.org/img/w/" + icon_id + ".png";
+    }
 }
 
 public class BotCommandWeather extends BotCommand {
@@ -55,19 +60,28 @@ public class BotCommandWeather extends BotCommand {
             "33d3288733508a5997641d20aa5de2ae";
 
     public void process(String text, Answer answer) {
-        if (text.equalsIgnoreCase("какая погода")) {
-            answer.text = getWeather("Ногинск") + " " + getSeason("Ногинск");
+        if (text.equals("какая погода")) {
+            answer.text = getWeather("Ногинск");
         }
+
+        if (text.contains("погода") && text.contains("ногинск")) {
+            Weather noginsk = getWeatherByCityName("Ногинск");
+            answer.text = "Погода в городе Ногинске "+noginsk.toString();
+        }
+        if (text.contains("погода") && text.contains("москва")) {
+            Weather moscow = getWeatherByCityName("Москва");
+            answer.text = "Погода в городе Москва "+moscow.toString();
+        }
+        if (text.contains("погода") && text.contains("одинцово")) {
+            Weather odintsovo = getWeatherByCityName("Одинцово");
+            answer.text = "Погода в городе Одинцово "+odintsovo.toString();
+        }
+
     }
 
     private String getWeather(String city) {
         Weather weather = getWeatherByCityName("Ногинск");
-        return "Сегодня в Ногинске " + weather.temp + " градусов, " + weather.description +
-                " http://openweathermap.org/img/w/" + weather.icon_id + ".png";
-    }
-
-    private String getSeason(String city) {
-        return "В городе " + city + " весна.";
+        return "Сегодня в Ногинске " + weather.toString();
     }
 
     private Weather getWeatherByCityName(String city) {

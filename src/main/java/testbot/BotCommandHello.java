@@ -15,6 +15,9 @@ public class BotCommandHello extends BotCommand {
             answer.Row3.add("Урок 8");
             answer.Row3.add("Урок 9");
             answer.Row3.add("Урок 10");
+            answer.Row4.add("Погода в Ногинске");
+            answer.Row4.add("Погода в Москве");
+            answer.Row4.add("Погода в Одинцово");
         }
     }
 }
