@@ -66,15 +66,26 @@ public class BotCommandWeather extends BotCommand {
 
         if (text.contains("погода") && text.contains("ногинск")) {
             Weather noginsk = getWeatherByCityName("Ногинск");
-            answer.text = "Погода в городе Ногинске "+noginsk.toString();
+            answer.text = "Погода в городе Ногинске " + noginsk.toString();
         }
         if (text.contains("погода") && text.contains("москв")) {
             Weather moscow = getWeatherByCityName("Москва");
-            answer.text = "Погода в городе Москва "+moscow.toString();
+            answer.text = "Погода в городе Москва " + moscow.toString();
         }
         if (text.contains("погода") && text.contains("одинцово")) {
             Weather odintsovo = getWeatherByCityName("Одинцово");
-            answer.text = "Погода в городе Одинцово "+odintsovo.toString();
+            answer.text = "Погода в городе Одинцово " + odintsovo.toString();
+        }
+        if (text.equals("погода")) {
+            Weather noginsk;
+            Weather moscow;
+            Weather odintsovo;
+            noginsk = getWeatherByCityName("ногинск");
+            moscow = getWeatherByCityName("Москва");
+            odintsovo = getWeatherByCityName("Одинцово");
+            answer.text = "Погода в Ногинске " + noginsk.temp + ", в Москве " + moscow.temp +
+                    ", в Одинцово " + odintsovo.temp;
+
         }
 
     }
