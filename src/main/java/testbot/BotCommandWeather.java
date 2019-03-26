@@ -83,8 +83,8 @@ public class BotCommandWeather extends BotCommand {
             noginsk = getWeatherByCityName("ногинск");
             moscow = getWeatherByCityName("Москва");
             odintsovo = getWeatherByCityName("Одинцово");
-            answer.text = "Погода в Ногинске " + noginsk.temp + ", в Москве " + moscow.temp +
-                    ", в Одинцово " + odintsovo.temp;
+            answer.text = String.format("Погода в Ногинске %s \\u00b0, в Москве %s \\u00b0, в Одинцово %s \\u00b0",
+                    noginsk.temp, moscow.temp, odintsovo.temp);
 
         }
 
