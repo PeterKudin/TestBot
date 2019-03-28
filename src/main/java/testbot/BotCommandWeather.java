@@ -49,7 +49,7 @@ class Weather {
     String icon_id; // Картинка с погодой
 
     public String toString() {
-        return temp + " градусов, " + description +
+        return temp + " \u00b0C, " + description +
                 " http://openweathermap.org/img/w/" + icon_id + ".png";
     }
 }
@@ -83,8 +83,9 @@ public class BotCommandWeather extends BotCommand {
             noginsk = getWeatherByCityName("ногинск");
             moscow = getWeatherByCityName("Москва");
             odintsovo = getWeatherByCityName("Одинцово");
-            answer.text = String.format("Погода в Ногинске %s \u00b0C, в Москве %s \u00b0C, в Одинцово %s \u00b0C",
-                    noginsk.temp, moscow.temp, odintsovo.temp);
+            answer.text = String.format(
+                    "Погода в Ногинске %s \u00b0C %s, в Москве %s \u00b0C, в Одинцово %s \u00b0C",
+                    noginsk.temp, noginsk.description,moscow.temp, odintsovo.temp);
 
         }
 
