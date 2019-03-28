@@ -18,6 +18,7 @@ public class BotCommandHello extends BotCommand {
             answer.Row4.add("Погода в Ногинске");
             answer.Row4.add("Погода в Москве");
             answer.Row4.add("Погода в Одинцово");
+            answer.Row4.add("Погода");
         }
     }
 }
