@@ -42,7 +42,7 @@ import java.net.URL;
 
 class Weather {
     String city; // Город
-    String temp; // Температура
+    Float temp; // Температура
     String temp_min; // Минимальная температура
     String temp_max; // Максимальная температура
     String description; // Описание погоды
@@ -85,8 +85,19 @@ public class BotCommandWeather extends BotCommand {
             odintsovo = getWeatherByCityName("Одинцово");
             answer.text = String.format(
                     "Погода в Ногинске %s \u00b0C %s, в Москве %s \u00b0C %s, в Одинцово %s \u00b0C %s",
-                    noginsk.temp, noginsk.description,moscow.temp, moscow.description, odintsovo.temp, odintsovo.description);
+                    noginsk.temp, noginsk.description, moscow.temp, moscow.description, odintsovo.temp, odintsovo.description);
 
+        }
+        if (text.equals("где сейчас теплее")) {
+            Weather noginsk = getWeatherByCityName("Ногинск");
+            Weather moscow = getWeatherByCityName("Москва");
+            Weather odintsovo = getWeatherByCityName("Одинцово");
+            if ((noginsk.temp >= moscow.temp) && (noginsk.temp >= odintsovo.temp))
+                answer.text = "Теплее всего в городе Ногинске, там " + noginsk.temp + " \u00b0C ";
+            if ((moscow.temp >= noginsk.temp) && (moscow.temp >= odintsovo.temp))
+                answer.text = "Теплее всего в городе Москва, там " + moscow.temp + " \u00b0C ";
+            if ((odintsovo.temp >= noginsk.temp) && (odintsovo.temp >= moscow.temp))
+                answer.text = "Теплее всего в городе Одинцово, там " + odintsovo.temp + " \u00b0C ";
         }
 
     }
@@ -122,7 +133,7 @@ public class BotCommandWeather extends BotCommand {
             JSONArray jsonWeather = (JSONArray) jsonObject.get("weather");
 
             weather.city = jsonObject.get("name").toString();
-            weather.temp = main.get("temp").toString();
+            weather.temp = Float.parseFloat(main.get("temp").toString());
             weather.temp_min = main.get("temp_min").toString();
             weather.temp_max = main.get("temp_max").toString();
 
